@@ -56,6 +56,10 @@ nav .router {
   padding: 0.5rem;
   color: $textColor;
   text-decoration: none;
+  background-image: linear-gradient(to bottom, $primaryColor, $primaryColor 50%, $textColor, $textColor 50%);
+  background-position: 100% 0;
+  background-size: 100% 200%;
+  transition: all 0.25s ease-in;
 }
 
 .router .route a::before {
@@ -79,6 +83,7 @@ nav .router {
 }
 
 .router .route:hover a {
+  background-position: 0 -100%;
   background-color: $textColor;
   color: $primaryColor;
 }
