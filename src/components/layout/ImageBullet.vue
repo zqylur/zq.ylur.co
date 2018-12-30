@@ -1,6 +1,10 @@
 <template>
   <div>
-    <img :src="require(`../../assets/${logo}.svg`)" /> <span>{{ text }}</span>
+    <img
+      v-if="logo"
+      :src="require(`../../assets/logos/${logo}.svg`)"
+    />
+    <span>{{ text }}</span>
   </div>
 </template>
 
@@ -22,8 +26,8 @@ div {
   }
 }
 img {
-  height: 24px;
-  width: 24px;
+  height: 36px;
+  width: 36px;
 }
 
 span {
