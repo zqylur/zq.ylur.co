@@ -2,16 +2,24 @@
   <nav>
     <ol class="router">
       <li class="route">
-        <a>Home</a>
+        <router-link to="/">
+          <a>Home</a>
+        </router-link>
       </li>
       <li class="route">
-        <a>About</a>
+        <router-link to="/about">
+          <a>About</a>
+        </router-link>
       </li>
       <li class="route">
-        <a>Resume</a>
+        <router-link to="/resume">
+          <a>Resume</a>
+        </router-link>
       </li>
       <li class="route">
-        <a>Contact</a>
+        <router-link to="/contact">
+          <a>Contact</a>
+        </router-link>
       </li>
     </ol>
   </nav>
