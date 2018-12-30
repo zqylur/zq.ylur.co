@@ -31,7 +31,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 nav {
   flex-grow: 4;
 }
@@ -54,7 +54,7 @@ nav .router {
 .router .route a {
   display: inline-block;
   padding: 0.5rem;
-  color: #e4fde1;
+  color: $textColor;
   text-decoration: none;
 }
 
@@ -63,7 +63,7 @@ nav .router {
   position: absolute;
   height: 2px;
   width: 100%;
-  background-color: #f45b69;
+  background-color: $primaryColor;
   left: 0;
   top: 3px;
 }
@@ -73,13 +73,13 @@ nav .router {
   position: absolute;
   height: 2px;
   width: 100%;
-  background-color: #f45b69;
+  background-color: $primaryColor;
   left: 0;
   bottom: 3px;
 }
 
 .router .route:hover a {
-  background-color: #e4fde1;
-  color: #f45b69;
+  background-color: $textColor;
+  color: $primaryColor;
 }
 </style>

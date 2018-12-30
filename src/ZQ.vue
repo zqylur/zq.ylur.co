@@ -21,10 +21,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
-  background-color: #f45b69;
+  background-color: $primaryColor;
 }
 
 #zq {
@@ -32,7 +32,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #e4fde1;
+  color: $textColor;
   box-sizing: border-box;
 }
 
