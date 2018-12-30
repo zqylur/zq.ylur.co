@@ -45,7 +45,8 @@
         {
           "ignores": ["transition", "router-view", "router-link"]
         }
-      ]
+      ],
+      "vue/html-self-closing": "off"
     }
   },
   "postcss": {
