@@ -22,12 +22,17 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+  background-color: #f45b69;
+}
+
 #zq {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Arcon', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #e4fde1;
   box-sizing: border-box;
 }
 
@@ -41,5 +46,10 @@ export default {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100%);
   opacity: 0;
+}
+
+@font-face {
+  font-family: 'Arcon';
+  src: url('./assets/Arcon-Regular.otf');
 }
 </style>
