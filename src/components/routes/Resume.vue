@@ -1,12 +1,26 @@
 <template>
-  <div class="resume">
+  <div class="zq-Resume">
+    <img
+      v-if="!initialized"
+      :class="`zq-Resume-jsOverlay ${fadeOverlay ? 'fade' : ''}`"
+      :src="require(`../../assets/logos/${baseSkill.logo}.svg`)"
+    />
+    <DancingLogo
+      v-if="initialized"
+      :key="`${baseSkill.text}-${clientHeight}-${clientWidth}}`"
+      :logo="baseSkill.logo"
+      :size="getExpertiseSizing(baseSkill.expertise)"
+      :max-x="clientWidth / 2"
+      :max-y="(clientHeight * 0.8) / 2"
+      :immediate="true"
+    />
     <DancingLogo
       v-for="skill in skills"
-      :key="skill.text"
+      :key="`${skill.text}-${clientHeight}-${clientWidth}}`"
       :logo="skill.logo"
       :size="getExpertiseSizing(skill.expertise)"
-      :max-x="(clientWidth / 2) * 0.8"
-      :max-y="clientHeight * 0.8"
+      :max-x="clientWidth / 2"
+      :max-y="(clientHeight * 0.8) / 2"
     />
   </div>
 </template>
@@ -27,19 +41,33 @@ export default {
   components: {
     DancingLogo,
   },
+  created: function() {
+    window.addEventListener('resize', this.handleResize);
+    setTimeout(() => {
+      this.fadeOverlay = true;
+    }, 5000);
+    setTimeout(() => {
+      this.initialized = true;
+    }, 7100);
+  },
+  beforeDestroy: function() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   data: () => {
     return {
+      initialized: false,
+      fadeOverlay: false,
       clientHeight: document.documentElement.clientHeight,
       clientWidth: document.documentElement.clientWidth,
+      baseSkill: { text: 'Javascript', logo: 'js', expertise: 'everyDay' },
       skills: [
-        { text: 'Javascript', logo: 'js', expertise: 'everyDay' },
         { text: 'Typescript', logo: 'ts', expertise: 'everyDay' },
         { text: 'webpack', logo: 'webpack', expertise: 'prettyFamiliar' },
         { text: 'CSS', logo: 'css', expertise: 'everyDay' },
         { text: 'HTML', logo: 'html', expertise: 'everyDay' },
         { text: 'C#', logo: 'csharp', expertise: 'beenAWhile' },
         { text: 'R', logo: 'r', expertise: 'beenAWhile' },
-        { text: 'Node.js', logo: 'nodejs', expertise: 'some' },
+        { text: 'Node.js', logo: 'nodejs', expertise: 'prettyFamiliar' },
         { text: 'React', logo: 'react', expertise: 'everyDay' },
         { text: 'AngularJS', logo: 'angular', expertise: 'prettyFamiliar' },
         { text: 'Flow', logo: 'flow', expertise: 'some' },
@@ -63,14 +91,35 @@ export default {
     getExpertiseSizing: function(expertise) {
       return expertiseToSize[expertise];
     },
+    handleResize: function() {
+      this.clientHeight = document.documentElement.clientHeight;
+      this.clientWidth = document.documentElement.clientWidth;
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.resume {
+.zq-Resume {
   position: relative;
   height: 80vh;
   width: 100vw;
+
+  .zq-Resume-jsOverlay {
+    z-index: 1;
+    position: absolute;
+    height: 20rem;
+    width: 20rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 1s ease-out;
+
+    &.fade {
+      opacity: 0.5;
+      height: 96px;
+      width: 96px;
+    }
+  }
 }
 </style>
