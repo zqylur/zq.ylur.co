@@ -1,76 +1,76 @@
 <template>
   <div class="resume">
-    <ul>
-      <li
-        v-for="skill in skills"
-        :key="skill.text"
-      >
-        <ImageBullet
-          :text="skill.text"
-          :logo="skill.logo"
-        />
-      </li>
-    </ul>
+    <DancingLogo
+      v-for="skill in skills"
+      :key="skill.text"
+      :logo="skill.logo"
+      :size="getExpertiseSizing(skill.expertise)"
+      :max-x="(clientWidth / 2) * 0.8"
+      :max-y="clientHeight * 0.8"
+    />
   </div>
 </template>
 
 <script>
-import ImageBullet from '../layout/ImageBullet.vue';
+import DancingLogo from '../layout/DancingLogo.vue';
+
+const expertiseToSize = {
+  everyDay: 'xlarge',
+  prettyFamiliar: 'large',
+  some: 'medium',
+  beenAWhile: 'small',
+  triedItOnce: 'xsmall',
+};
 
 export default {
   name: 'Resume',
   components: {
-    ImageBullet,
+    DancingLogo,
   },
   data: () => {
     return {
+      clientHeight: document.documentElement.clientHeight,
+      clientWidth: document.documentElement.clientWidth,
       skills: [
-        { text: 'Javascript', logo: 'js' },
-        { text: 'Typescript', logo: 'ts' },
-        { text: 'webpack', logo: 'webpack' },
-        { text: 'CSS', logo: 'css' },
-        { text: 'HTML', logo: 'html' },
-        { text: 'C#', logo: 'csharp' },
-        { text: 'R', logo: 'r' },
-        { text: 'Node.js', logo: 'nodejs' },
-        { text: 'React', logo: 'react' },
-        { text: 'AngularJS', logo: 'angular' },
-        { text: 'Flow', logo: 'flow' },
-        { text: 'gulp', logo: 'gulp' },
-        { text: 'Grunt', logo: 'grunt' },
-        { text: 'Sass', logo: 'sass' },
-        { text: 'jQuery', logo: 'jquery' },
-        { text: 'git', logo: 'git' },
-        { text: 'Vue.js', logo: 'vue' },
-        { text: 'babel', logo: 'babel' },
-        { text: 'Jest', logo: 'jest' },
-        { text: 'Karma', logo: 'karma' },
-        { text: 'npm', logo: 'npm' },
-        { text: 'Enzyme', logo: 'enzyme' },
-        { text: 'Redux', logo: 'redux' },
-        { text: 'Redux-Saga', logo: 'reduxsaga' },
+        { text: 'Javascript', logo: 'js', expertise: 'everyDay' },
+        { text: 'Typescript', logo: 'ts', expertise: 'everyDay' },
+        { text: 'webpack', logo: 'webpack', expertise: 'prettyFamiliar' },
+        { text: 'CSS', logo: 'css', expertise: 'everyDay' },
+        { text: 'HTML', logo: 'html', expertise: 'everyDay' },
+        { text: 'C#', logo: 'csharp', expertise: 'beenAWhile' },
+        { text: 'R', logo: 'r', expertise: 'beenAWhile' },
+        { text: 'Node.js', logo: 'nodejs', expertise: 'some' },
+        { text: 'React', logo: 'react', expertise: 'everyDay' },
+        { text: 'AngularJS', logo: 'angular', expertise: 'prettyFamiliar' },
+        { text: 'Flow', logo: 'flow', expertise: 'some' },
+        { text: 'gulp', logo: 'gulp', expertise: 'beenAWhile' },
+        { text: 'Grunt', logo: 'grunt', expertise: 'beenAWhile' },
+        { text: 'Sass', logo: 'sass', expertise: 'prettyFamiliar' },
+        { text: 'jQuery', logo: 'jquery', expertise: 'beenAWhile' },
+        { text: 'git', logo: 'git', expertise: 'everyDay' },
+        { text: 'Vue.js', logo: 'vue', expertise: 'triedItOnce' },
+        { text: 'babel', logo: 'babel', expertise: 'prettyFamiliar' },
+        { text: 'Jest', logo: 'jest', expertise: 'everyDay' },
+        { text: 'Karma', logo: 'karma', expertise: 'beenAWhile' },
+        { text: 'npm', logo: 'npm', expertise: 'prettyFamiliar' },
+        { text: 'Enzyme', logo: 'enzyme', expertise: 'everyDay' },
+        { text: 'Redux', logo: 'redux', expertise: 'everyDay' },
+        { text: 'Redux-Saga', logo: 'reduxsaga', expertise: 'everyDay' },
       ],
     };
+  },
+  methods: {
+    getExpertiseSizing: function(expertise) {
+      return expertiseToSize[expertise];
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: baseline;
-
-  & > li {
-    flex-grow: 1;
-    flex-shrink: 0;
-    flex-basis: 20%;
-
-    &:not(:last-child) {
-      margin-bottom: 3rem;
-    }
-  }
+.resume {
+  position: relative;
+  height: 80vh;
+  width: 100vw;
 }
 </style>
