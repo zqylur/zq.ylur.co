@@ -12,7 +12,7 @@
       :size="getExpertiseSizing(baseSkill.expertise)"
       :max-x="clientWidth / 2"
       :max-y="(clientHeight * 0.8) / 2"
-      :immediate="true"
+      :initial-duration="1.5"
     />
     <DancingLogo
       v-for="skill in skills"
@@ -118,7 +118,7 @@ export default {
     width: 20rem;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate3d(-50%, -50%, 0);
     transition: all 1s ease-out;
 
     &.fade {

@@ -17,7 +17,7 @@ export default {
     size: { default: 'small', type: String },
     maxX: Number(),
     maxY: Number(),
-    immediate: Boolean,
+    initialDuration: Number(),
   },
   data: function() {
     return {
@@ -27,10 +27,12 @@ export default {
     };
   },
   mounted: function() {
-    if (this.immediate) {
+    if (this.initialDuration) {
+      const duration = this.initialDuration * 1000;
+      this.duration = duration;
       setTimeout(() => {
         this.setPosition();
-      }, 0);
+      }, duration);
 
       return;
     }
@@ -52,7 +54,7 @@ export default {
       // Add an extra 100ms to the timeout to ensure animation completes
       setTimeout(() => {
         this.setPosition();
-      }, duration * 1000 + 100);
+      }, duration * 1000 + 10);
     },
     getTransition: function() {
       const xDir = Math.round(Math.random()) || -1;
@@ -83,7 +85,12 @@ export default {
     transform: translate3d(-50%, -50%, 0);
     top: 50%;
     left: 50%;
-    display: block;
+
+    & > img {
+      // img is an inline element and gets an extra 3px of height, display: block removes it
+      // https://stackoverflow.com/a/24626986
+      display: block;
+    }
 
     &.xlarge > img {
       height: 96px;
