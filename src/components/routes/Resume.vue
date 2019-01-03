@@ -43,12 +43,7 @@ export default {
   },
   created: function() {
     window.addEventListener('resize', this.handleResize);
-    setTimeout(() => {
-      this.fadeOverlay = true;
-    }, 5000);
-    setTimeout(() => {
-      this.initialized = true;
-    }, 7100);
+    this.init();
   },
   beforeDestroy: function() {
     window.removeEventListener('resize', this.handleResize);
@@ -88,12 +83,23 @@ export default {
     };
   },
   methods: {
+    init: function() {
+      setTimeout(() => {
+        this.fadeOverlay = true;
+        setTimeout(() => {
+          this.initialized = true;
+        }, 1250);
+      }, 5000);
+    },
     getExpertiseSizing: function(expertise) {
       return expertiseToSize[expertise];
     },
     handleResize: function() {
       this.clientHeight = document.documentElement.clientHeight;
       this.clientWidth = document.documentElement.clientWidth;
+      this.fadeOverlay = false;
+      this.initialized = false;
+      this.init();
     },
   },
 };
