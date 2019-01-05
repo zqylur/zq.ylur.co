@@ -5,5 +5,5 @@ workflow "New workflow" {
 
 action "GitHub Action for npm" {
   uses = "actions/npm@e7aaefe"
-  runs = "build"
+  args = "build"
 }
